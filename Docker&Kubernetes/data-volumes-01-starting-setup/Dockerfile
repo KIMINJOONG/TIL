@@ -8,7 +8,9 @@ RUN npm install
 
 COPY . /app
 
-EXPOSE 80
+ENV PORT 80
+
+EXPOSE $PORT
 
 # VOLUME ["/app/temp"]
 
