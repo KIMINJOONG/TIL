@@ -23,7 +23,8 @@ app.get("/exists", (req, res) => {
 });
 
 app.post("/create", async (req, res) => {
-  console.log("들어옴fff");
+  console.log("들어옴222");
+  console.log("heifdsfiadsif");
   const title = req.body.title;
   const content = req.body.text;
 
