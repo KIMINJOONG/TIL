@@ -11,7 +11,17 @@ services:
     env_file:
       - ./env/mongo.env
   backend:
+    build: ./backend
+    ports:
+      - "80:80"
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
   frontend:
 
 volumes:
   data:
+  logs:
