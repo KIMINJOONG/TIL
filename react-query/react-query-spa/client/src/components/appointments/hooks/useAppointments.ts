@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useCustomToast } from 'components/app/hooks/useCustomToast';
 import dayjs from 'dayjs';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { axiosInstance } from '../../../axiosInstance';
@@ -75,11 +75,15 @@ export function useAppointments(): UseAppointments {
 
   const toast = useCustomToast();
   const fallback = [];
+  const selectFn = useCallback(
+    (data) => getAvailableAppointments(data, user),
+    [user],
+  );
   const { data: appointments = fallback } = useQuery(
     [queryKeys.appointments, monthYear.year, monthYear.month],
     () => getAppointments(monthYear.year, monthYear.month),
     {
-      keepPreviousData: true,
+      select: showAll ? undefined : selectFn,
     },
   );
 
