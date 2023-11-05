@@ -73,6 +73,7 @@ export function useAppointments(): UseAppointments {
   //    2. The getAppointments query function needs monthYear.year and
   //       monthYear.month
 
+  const commonOptions = { staleTime: 0, cacheTime: 300000 };
   const toast = useCustomToast();
   const fallback = [];
   const selectFn = useCallback(
@@ -84,6 +85,11 @@ export function useAppointments(): UseAppointments {
     () => getAppointments(monthYear.year, monthYear.month),
     {
       select: showAll ? undefined : selectFn,
+      ...commonOptions,
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+      refetchInterval: 60000,
     },
   );
 
