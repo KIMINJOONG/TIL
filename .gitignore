@@ -1,2 +1,2 @@
 *.pem
-Docker&Kubernetes/docker-laravel/src
+Docker&Kubernetes/docker-laravel/src/*
